@@ -2,7 +2,7 @@
     --tile-size : 100px;
     --light-tile: #7c3838;
     --dark-tile: #221613;
-    --bg-color: #202020;
+    --bg-color: #181818;
 }
 
 @media all and (max-width: 450px) {
