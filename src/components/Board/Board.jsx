@@ -1,5 +1,7 @@
 import { getCharacter } from "../../utils"
 import "./Board.css"
+import Files from "./bits/Files"
+import Ranks from "./bits/Ranks"
 
 const Board = () => {
 
@@ -11,8 +13,9 @@ const Board = () => {
 
     const ranks = Array(8).fill().map((x,i) => 8-i)
     const files = Array(8).fill().map((x,i) => getCharacter(i))
-
+    
     return <div className="board">
+                <Ranks ranks={ranks}/>
                 <div className="tiles">
                     {ranks.map((rank, i) =>
                         files.map((file, j) => 
@@ -20,6 +23,7 @@ const Board = () => {
                         )
                     )}
                 </div>
+                <Files files={files}/>
             </div>
 }
 
