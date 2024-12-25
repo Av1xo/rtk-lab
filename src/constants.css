@@ -2,5 +2,11 @@
     --tile-size : 100px;
     --light-tile: #7c3838;
     --dark-tile: #221613;
-    --bg-color: 
+    --bg-color: #202020;
+}
+
+@media all and (max-width: 450px) {
+    :root {
+        --tile-size : 50px;
+    }
 }
