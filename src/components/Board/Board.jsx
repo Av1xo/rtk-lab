@@ -1,4 +1,5 @@
 import "./Board.css"
+import Pieces from "../Pieces/Pieces"
 import Files from "./bits/Files"
 import Ranks from "./bits/Ranks"
 
@@ -22,6 +23,9 @@ const Board = () => {
                         )
                     )}
                 </div>
+
+                <Pieces />
+                
                 <Files files={files}/>
             </div>
 }
