@@ -24,3 +24,13 @@ export const copyPosition = position =>{
     }
     return newPosition;
 }
+
+export const isValidPlayer = (piece, turn) => {
+    if (turn === 'w' && piece[0] !== 'w') {
+        return false;
+    }
+    if (turn === 'b' && piece[0] !== 'b') {
+        return false;
+    }
+    return true;
+};

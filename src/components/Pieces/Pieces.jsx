@@ -1,13 +1,16 @@
 import './Pieces.css';
 import Piece from "./Piece";
-import { useState, useRef } from 'react';
-import { initPosition, copyPosition } from '../../utils';
+import { useRef } from 'react';
+import { copyPosition, isValidPlayer } from '../../utils';
+import { useDispatch, useSelector } from 'react-redux';
+import { newMove } from '../../rtk/gameSlice';
 
 const Pieces = () => {
 
     const ref = useRef()
 
-    const [state, setState] = useState(initPosition());
+    const dispatch = useDispatch();
+    const { position, turn } = useSelector((state) => state.game);
 
     const calculateDropPosition = e => {
         const {width, left, top} = ref.current.getBoundingClientRect()
@@ -18,15 +21,20 @@ const Pieces = () => {
     }
 
     const handleDrop = e => {
-        const newPosition = copyPosition(state)
+        const newPosition = copyPosition(position)
         const {x, y} = calculateDropPosition(e)
 
-        const [p, rank, file] = e.dataTransfer.getData('text').split(',')
+        const [p, startRank, startFile] = e.dataTransfer.getData('text').split(',')
 
-        newPosition[rank][file] = ''
+        if (!isValidPlayer(p, turn)) {
+            return e.preventDefault();
+        }
+
+
+        newPosition[startRank][startFile] = ''
         newPosition[x][y] = p
 
-        setState(newPosition)
+        dispatch(newMove({ newPosition }));
     }
 
     const handleDragOver = e => e.preventDefault();
@@ -37,14 +45,14 @@ const Pieces = () => {
         onDrop = {handleDrop}
         onDragOver={handleDragOver}
     >
-        {state.map((r, rank) => 
+        {position.map((r, rank) => 
             r.map((f, file) =>
-                state[rank][file]
+                position[rank][file]
                 ?   <Piece 
                         key={rank+'-'+file}
                         rank={rank}
                         file={file}
-                        piece={state[rank][file]}
+                        piece={position[rank][file]}
                     />
                 :   null
         ))}

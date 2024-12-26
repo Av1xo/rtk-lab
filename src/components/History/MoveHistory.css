@@ -1,0 +1,20 @@
+.move-history {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.move-history button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #683225;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.move-history button:disabled {
+    background-color: #2b2121;
+    cursor: not-allowed;
+}

@@ -11,10 +11,6 @@
     width: calc(8 + var(--tile-size));
 }
 
-.tile {
-
-}
-
 .tile--light{
     background: var(--light-tile); 
 }
